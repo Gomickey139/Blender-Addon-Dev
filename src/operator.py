@@ -6,7 +6,7 @@ class MY_OT_AddItem(bpy.types.Operator):
 
     def execute(self, context):
         item = context.window_manager.global_list.add()
-        item.name = "Global Item"
+        item.name = "Nodes"
         return {'FINISHED'}
 
 
@@ -26,8 +26,15 @@ class MY_OT_RemoveItem(bpy.types.Operator):
                 
         return {'FINISHED'}
 
-class MY_OT_ForceLoad(bpy.types.Operator):
-    bl_idname = "my_global.force_load"
+class MY_OT_Load(bpy.types.Operator):
+    bl_idname = "global.load"
+    bl_label = "Load to Node Editor"
+
+    def execute(self, context):
+        return {'FINISHED'}
+
+class MY_OT_Reload(bpy.types.Operator):
+    bl_idname = "global.reload"
     bl_label = "Reload from File"
 
     def execute(self, context):

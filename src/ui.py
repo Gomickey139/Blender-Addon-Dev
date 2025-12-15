@@ -20,10 +20,10 @@ class NODE_PT_my_panel(bpy.types.Panel):
             rows=5
         )
         row = layout.row(align=True)
-        row.operator("global.add_item", text="Add")
-        row.operator("global.remove_item", text="Remove")
-        row.operator("my_global.force_load", icon='FILE_REFRESH', text="Reload")
-
+        row.operator("global.add_item", icon="IMPORT", text="Add")
+        row.operator("global.remove_item", icon="X", text="Remove")
+        row.operator("global.reload", icon='FILE_REFRESH', text="Reload")
+        layout.operator("global.load", icon="NODETREE", text="Load Nodes")
 
 class MY_UL_List(bpy.types.UIList):
     def draw_item(self, context, layout, data, item, icon, active_data, active_propname):

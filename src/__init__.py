@@ -35,7 +35,8 @@ classes = [
     ui.MY_UL_List,
     operator.MY_OT_AddItem,
     operator.MY_OT_RemoveItem,
-    operator.MY_OT_ForceLoad,
+    operator.MY_OT_Load,
+    operator.MY_OT_Reload,
     ui.NODE_PT_my_panel
 ]
 
