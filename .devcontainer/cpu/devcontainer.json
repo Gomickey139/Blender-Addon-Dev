@@ -1,13 +1,10 @@
 {
-	"name" : "Blender Addon Dev",
+	"name" : "Blender Addon Dev(CPU)",
 
 	"build": {
-		"dockerfile": "Dockerfile"
+		"dockerfile": "../Dockerfile",
+		"context": "../.."
 	},
-
-	"runArgs": [
-		 "--gpus", "all"
-	],
 
 	"postCreateCommand": "pip install fake-bpy-module-latest",
 
@@ -30,5 +27,7 @@
 				"python.defaultInterpreterPath": "/usr/local/bin/python"
 			}
 		}
-	}
+	},
+
+	"remoteUser": "vscode"
 }
