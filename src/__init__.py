@@ -11,6 +11,7 @@ bl_info = {
 import bpy
 import importlib
 import os
+from . import util
 from . import ui
 from . import operator
 
@@ -19,9 +20,10 @@ DATA_FILE = os.path.join(os.path.dirname(__file__), "global_list_data.json")
 
 class GlobalItem(bpy.types.PropertyGroup):
     name: bpy.props.StringProperty(name="Name", default="New Item")
-    value: bpy.props.IntProperty(name="Value", default=0)
+    node_data: bpy.props.StringProperty(name="Node Data JSON", default="{}")
 
 pyfiles = [
+    util,
     ui,
     operator
 ]
@@ -47,7 +49,11 @@ def register():
     bpy.types.WindowManager.global_list = bpy.props.CollectionProperty(type=GlobalItem)
     bpy.types.WindowManager.global_list_index = bpy.props.IntProperty()
 
+    util.load_from_json(DATA_FILE)
+
 def unregister():
+    util.store_to_json(DATA_FILE)
+
     del bpy.types.WindowManager.global_list
     del bpy.types.WindowManager.global_list_index
 
