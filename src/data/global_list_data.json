@@ -1,1 +1,65 @@
-[]
+[
+    {
+        "uid": "009a695c-4a05-44f3-b41e-3e30c4b4e0d4",
+        "name": "Nodes",
+        "node_data": {
+            "nodes": [
+                {
+                    "name": "Mapping",
+                    "type": "ShaderNodeMapping",
+                    "location": [
+                        -977.3842163085938,
+                        38.186851501464844
+                    ],
+                    "width": 140.0,
+                    "properties": {},
+                    "inputs": [
+                        {
+                            "index": 0,
+                            "value": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        {
+                            "index": 1,
+                            "value": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        {
+                            "index": 2,
+                            "value": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        },
+                        {
+                            "index": 3,
+                            "value": [
+                                1.0,
+                                1.0,
+                                1.0
+                            ]
+                        }
+                    ],
+                    "outputs": [
+                        {
+                            "index": 0,
+                            "value": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "links": []
+        }
+    }
+]
