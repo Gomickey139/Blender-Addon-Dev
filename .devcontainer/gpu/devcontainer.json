@@ -7,8 +7,19 @@
 	},
 
 	"runArgs": [
-		 "--gpus", "all"
+		"--gpus", "all",
+		"-v", "/tmp/.X11-unix:/tmp/.X11-unix",
+        "-v", "/mnt/wslg:/mnt/wslg",
+        "-v", "/usr/lib/wsl:/usr/lib/wsl"
 	],
+
+	"containerEnv": {
+        "DISPLAY": "${localEnv:DISPLAY}",
+        "WAYLAND_DISPLAY": "${localEnv:WAYLAND_DISPLAY}",
+        "XDG_RUNTIME_DIR": "${localEnv:XDG_RUNTIME_DIR}",
+        "PULSE_SERVER": "${localEnv:PULSE_SERVER}",
+        "NVIDIA_DRIVER_CAPABILITIES": "graphics,display,compute,utility"
+    },
 
 	"postCreateCommand": "pip install fake-bpy-module-latest",
 
