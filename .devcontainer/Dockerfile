@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     libsm6 \
     libxkbcommon0 \
     libepoxy0 \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 # Blender 4.5 LTS をダウンロード・解凍して配置
