@@ -1,0 +1,38 @@
+{
+    "name": "Blender Addon Dev",
+
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": ".."
+    },
+
+    // 呪文のようだったGUI・GPU・マウント設定をすべて削除！
+
+    "postCreateCommand": "pip install fake-bpy-module-latest",
+
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python"
+                // ※Blender起動用の拡張機能（blender-development）も不要になったので外してスッキリさせます
+            ],
+            "settings": {
+                "python.defaultInterpreterPath": "/usr/local/bin/python",
+                // fake-bpy-moduleの補完を効かせるための推奨設定
+                "python.analysis.extraPaths": [
+                    "/usr/local/lib/python3.10/site-packages"
+                ]
+            }
+        }
+    },
+
+    "mounts": [
+        {
+            "source": "/mnt/c/Users/akutanezumi/github/AutoImportTest/Assets/FBX",
+            "target": "/workspace/UnityAssets",
+            "type": "bind"
+        }
+    ],
+
+    "remoteUser": "vscode"
+}

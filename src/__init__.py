@@ -1,44 +1,32 @@
 bl_info = {
-    "name": "Node Holder",
+    "name": "FBX Exporter",
     "author": "gmcky139",
-    "version": (1, 0, 2),
+    "version": (1, 0, 0),
     "blender": (4, 5, 0),
-    "location": "Node Editor > Sidebar > Node Holder",
-    "description": "Save selected nodes with connections and data for reuse across blend files.",
+    "location": "Node Editor > Sidebar > FBX Exporter",
+    "description": "FBXとメタデータ(JSON)をUnityへ自動エクスポートします",
+    "category": "Import-Export",
     "support": "COMMUNITY",
-    "warning": "",
-    "doc_url": "https://github.com/gmcky139/Node-Holder",
-    "tracker_url": "https://github.com/gmcky139/Node-Holder/issues",
-    "category": "Node",
+    "warning": ""
 }
 
 import bpy
 import importlib
-from . import util
 from . import ui
 from . import operator
 
 if "bpy" in locals():
     # 2回目以降の読み込み（チェックのオンオフ時や上書き時）はメモリから強制リロードする
     import importlib
-    importlib.reload(util)
     importlib.reload(ui)
     importlib.reload(operator)
 else:
     # 初回読み込み時
     import bpy
-    from . import util
     from . import ui
     from . import operator
 
-
-class GlobalItem(bpy.types.PropertyGroup):
-    uid: bpy.props.StringProperty(default="")
-    name: bpy.props.StringProperty(name="Name", default="New Item", update = util.update_name_in_json)
-    node_data: bpy.props.StringProperty(name="Node Data JSON", default="{}")
-
 pyfiles = [
-    util,
     ui,
     operator
 ]
@@ -48,30 +36,24 @@ for p in pyfiles:
         importlib.reload(p)
 
 classes = [
-    GlobalItem,
-    ui.MY_UL_List,
-    operator.MY_OT_OverwriteItem,
-    operator.MY_OT_RemoveItem,
-    operator.MY_OT_Load,
-    operator.MY_OT_RegisterItem,
-    operator.MY_OT_Reload,
-    ui.NODE_PT_my_panel
+    operator.EXPORT_OT_fbx_auto,
+    ui.VIEW3D_PT_fbx_export,
 ]
 
 def register():
     for c in classes:
         bpy.utils.register_class(c)
 
-    bpy.types.WindowManager.global_list = bpy.props.CollectionProperty(type=GlobalItem)
-    bpy.types.WindowManager.global_list_index = bpy.props.IntProperty()
-
-    util.load_from_json()
+    bpy.types.Scene.fbx_export_path = bpy.props.StringProperty(
+        name="Export Path",
+        description="コンテナ内のUnity Assetsマウント先",
+        default="/workspace/UnityAssets",
+        subtype='DIR_PATH'
+    )
 
 def unregister():
-    util.store_to_json()
 
-    del bpy.types.WindowManager.global_list
-    del bpy.types.WindowManager.global_list_index
+    del bpy.types.Scene.fbx_export_path
 
     for c in reversed(classes):
         bpy.utils.unregister_class(c)
