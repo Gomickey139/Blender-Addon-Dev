@@ -6,4 +6,4 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# ※Blender本体のダウンロード・解凍処理も不要になりました！
+RUN pip install fake-bpy-module-latest

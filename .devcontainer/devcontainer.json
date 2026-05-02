@@ -6,10 +6,6 @@
         "context": ".."
     },
 
-    // 呪文のようだったGUI・GPU・マウント設定をすべて削除！
-
-    "postCreateCommand": "pip install fake-bpy-module-latest",
-
     "customizations": {
         "vscode": {
             "extensions": [

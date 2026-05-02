@@ -1,9 +1,9 @@
 bl_info = {
-    "name": "FBX Exporter",
+    "name": "FBX_Exporter",
     "author": "gmcky139",
     "version": (1, 0, 0),
     "blender": (4, 5, 0),
-    "location": "Node Editor > Sidebar > FBX Exporter",
+    "location": "Node Editor > Sidebar > FBX_Exporter",
     "description": "FBXとメタデータ(JSON)をUnityへ自動エクスポートします",
     "category": "Import-Export",
     "support": "COMMUNITY",
@@ -47,7 +47,7 @@ def register():
     bpy.types.Scene.fbx_export_path = bpy.props.StringProperty(
         name="Export Path",
         description="コンテナ内のUnity Assetsマウント先",
-        default="/workspace/UnityAssets",
+        default="C:\\Users\\akutanezumi\\github\\AutoImportTest\\Assets\\FBX",
         subtype='DIR_PATH'
     )
 
